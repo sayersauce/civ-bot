@@ -10,7 +10,7 @@ from PIL import Image
 
 
 # config
-if not (os.path.isfile("config.json") or os.path.isfile("civs.json") or os.path.isfile("expansions.json")):
+if not (os.path.isfile("config.json") and os.path.isfile("civs.json") and os.path.isfile("expansions.json")):
     print("Could not find the correct configuration files.")
     input("Press enter to quit.")
     quit()
@@ -30,15 +30,21 @@ async def on_ready():
 
 
 # bot
-bot = commands.Bot(command_prefix=config["prefix"])
+bot = commands.Bot(command_prefix=config["prefix"], help_command=None)
 
 bot.add_listener(on_ready)
 
 
 # commands
 @bot.command()
+async def names(ctx):
+    await ctx.send("\n".join([civ["name"] for civ in civilizations["civs"]]))
+
+
+@bot.command()
 async def draft(ctx, no_players=None, no_civs_per_player=None):
     total_no_civs = len(civilizations["civs"])
+    bans = []
 
     if not no_players or not no_civs_per_player or not (no_players.isdigit() and no_civs_per_player.isdigit()):
         no_players = 0
@@ -48,13 +54,33 @@ async def draft(ctx, no_players=None, no_civs_per_player=None):
         no_civs_per_player = int(no_civs_per_player)
     
     if not (1 <= no_players <= 12 and 1 <= no_civs_per_player <= math.floor(total_no_civs/no_players)):
+        # number of players input
         await ctx.send("How many players? (1-12)")
 
         player_check = lambda m : m.channel.id == ctx.channel.id and ctx.author == m.author and m.content.isdigit() and 1 <= int(m.content) <= 12
         no_players = int((await bot.wait_for("message", check=player_check)).content)
-        max_civs = math.floor(total_no_civs/no_players)
 
-        await ctx.send(f"{no_players} players.\nHow many civs per player? (1-{max_civs})")
+        # banned civs input
+        await ctx.send(f"{no_players} players.\nBanned civs? (check >names)")
+
+        ban_check = lambda m : m.channel.id == ctx.channel.id and ctx.author == m.author and (m.content in [x["name"] for x in civilizations["civs"]] or m.content == "finished") and m.content not in bans
+        ban = (await bot.wait_for("message", check=ban_check)).content
+
+        while ban != "finished":
+            bans.append(ban)
+
+            if len(bans) == 1:
+                await ctx.send("1 civ has been banned.")
+            else:
+                await ctx.send(f"{len(bans)} civs have been banned.")
+
+            ban = (await bot.wait_for("message", check=ban_check)).content
+
+        await ctx.send(f"{', '.join(bans)} ({len(bans)} civs) have been banned.")
+
+        max_civs = math.floor((total_no_civs-len(bans))/no_players)
+
+        await ctx.send(f"How many civs per player? (1-{max_civs})")
         
         civ_check = lambda m : m.channel.id == ctx.channel.id and ctx.author == m.author and m.content.isdigit() and 1 <= int(m.content) <= max_civs
         no_civs_per_player = int((await bot.wait_for("message", check=civ_check)).content)
@@ -63,6 +89,7 @@ async def draft(ctx, no_players=None, no_civs_per_player=None):
 
     # drafting
     civ_choices = civilizations["civs"].copy()
+    civ_choices = [c for c in civ_choices if c["name"] not in bans]
 
     for i in range(no_players):
         options = random.sample(civ_choices, no_civs_per_player)
