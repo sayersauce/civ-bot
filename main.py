@@ -76,7 +76,10 @@ async def draft(ctx, no_players=None, no_civs_per_player=None):
 
             ban = (await bot.wait_for("message", check=ban_check)).content
 
-        await ctx.send(f"{', '.join(bans)} ({len(bans)} civs) have been banned.")
+        if len(bans) == 1:
+            await ctx.send(f"{', '.join(bans)} (1 civ) has been banned.")
+        else:
+            await ctx.send(f"{', '.join(bans)} ({len(bans)} civs) have been banned.")
 
         max_civs = math.floor((total_no_civs-len(bans))/no_players)
 
