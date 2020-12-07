@@ -10,16 +10,16 @@ from PIL import Image
 
 
 # config
-if not (os.path.isfile("config.json") and os.path.isfile("civs.json") and os.path.isfile("expansions.json")):
+if not (os.path.isfile(os.path.join(os.path.dirname(__file__), "config.json")) and os.path.isfile(os.path.join(os.path.dirname(__file__), "civs.json")) and os.path.isfile(os.path.join(os.path.dirname(__file__), "expansions.json"))):
     print("Could not find the correct configuration files.")
     input("Press enter to quit.")
     quit()
 else:
-    with open("config.json") as f:
+    with open(os.path.join(os.path.dirname(__file__), "config.json")) as f:
         config = json.load(f)
-    with open("civs.json") as f:
+    with open(os.path.join(os.path.dirname(__file__), "civs.json")) as f:
         civilizations = json.load(f)
-    with open("expansions.json") as f:
+    with open(os.path.join(os.path.dirname(__file__), "expansions.json")) as f:
         expansions = json.load(f)
 
 
@@ -105,7 +105,7 @@ async def draft(ctx, no_players=None, no_civs_per_player=None):
         flag_images = []
 
         for f in flag_paths:
-            flag_images.append(Image.open("flags/" + f))
+            flag_images.append(Image.open(os.path.join(os.path.dirname(__file__), "flags/" + f)))
 
         combined_image = Image.new("RGBA", (len(flag_paths) * flag_images[0].width, flag_images[0].height))
         
