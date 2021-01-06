@@ -6,7 +6,8 @@
             "expansion": [
                 "Vanilla"
             ],
-            "picture": "American_(Civ5).png"
+            "picture": "American_(Civ5).png",
+            "tier": 3
         },
         {
             "name": "Arabian",
@@ -14,7 +15,8 @@
             "expansion": [
                 "Vanilla"
             ],
-            "picture": "Arabian_(Civ5).png"
+            "picture": "Arabian_(Civ5).png",
+            "tier": 2
         },
         {
             "name": "Assyrian",
@@ -22,7 +24,8 @@
             "expansion": [
                 "Brave new World"
             ],
-            "picture": "Assyrian_(Civ5).png"
+            "picture": "Assyrian_(Civ5).png",
+            "tier": 4
         },
         {
             "name": "Austrian",
@@ -30,7 +33,8 @@
             "expansion": [
                 "Gods and Kings"
             ],
-            "picture": "Austrian_(Civ5).png"
+            "picture": "Austrian_(Civ5).png",
+            "tier": 3
         },
         {
             "name": "Aztec",
@@ -38,7 +42,8 @@
             "expansion": [
                 "Vanilla"
             ],
-            "picture": "Aztec_(Civ5).png"
+            "picture": "Aztec_(Civ5).png",
+            "tier": 2
         },
         {
             "name": "Babylonian",
@@ -46,7 +51,8 @@
             "expansion": [
                 "Babylon"
             ],
-            "picture": "Babylonian_(Civ5).png"
+            "picture": "Babylonian_(Civ5).png",
+            "tier": 1
         },
         {
             "name": "Brazilian",
@@ -54,7 +60,8 @@
             "expansion": [
                 "Brave new World"
             ],
-            "picture": "Brazilian_(Civ5).png"
+            "picture": "Brazilian_(Civ5).png",
+            "tier": 4
         },
         {
             "name": "Byzantine",
@@ -62,7 +69,8 @@
             "expansion": [
                 "Gods and Kings"
             ],
-            "picture": "Byzantine_(Civ5).png"
+            "picture": "Byzantine_(Civ5).png",
+            "tier": 3
         },
         {
             "name": "Carthaginian",
@@ -70,7 +78,8 @@
             "expansion": [
                 "Gods and Kings"
             ],
-            "picture": "Carthaginian_(Civ5).png"
+            "picture": "Carthaginian_(Civ5).png",
+            "tier": 5
         },
         {
             "name": "Celtic",
@@ -78,7 +87,8 @@
             "expansion": [
                 "Gods and Kings"
             ],
-            "picture": "Celtic_(Civ5).png"
+            "picture": "Celtic_(Civ5).png",
+            "tier": 3
         },
         {
             "name": "Chinese",
@@ -86,7 +96,8 @@
             "expansion": [
                 "Brave new World"
             ],
-            "picture": "Chinese_(Civ5).png"
+            "picture": "Chinese_(Civ5).png",
+            "tier": 2
         },
         {
             "name": "Danish",
@@ -94,7 +105,8 @@
             "expansion": [
                 "Denmark"
             ],
-            "picture": "Danish_(Civ5).png"
+            "picture": "Danish_(Civ5).png",
+            "tier": 3
         },
         {
             "name": "Dutch",
@@ -102,7 +114,8 @@
             "expansion": [
                 "Gods and Kings"
             ],
-            "picture": "Dutch_(Civ5).png"
+            "picture": "Dutch_(Civ5).png",
+            "tier": 5
         },
         {
             "name": "Egyptian",
@@ -110,7 +123,8 @@
             "expansion": [
                 "Vanilla"
             ],
-            "picture": "Egyptian_(Civ5).png"
+            "picture": "Egyptian_(Civ5).png",
+            "tier": 1
         },
         {
             "name": "English",
@@ -118,7 +132,8 @@
             "expansion": [
                 "Vanilla"
             ],
-            "picture": "English_(Civ5).png"
+            "picture": "English_(Civ5).png",
+            "tier": 1
         },
         {
             "name": "Ethiopian",
@@ -127,7 +142,8 @@
                 "Gods and Kings",
                 "Brave new World"
             ],
-            "picture": "Ethiopian_(Civ5).png"
+            "picture": "Ethiopian_(Civ5).png",
+            "tier": 1
         },
         {
             "name": "French",
@@ -135,7 +151,8 @@
             "expansion": [
                 "Vanilla"
             ],
-            "picture": "French_(Civ5).png"
+            "picture": "French_(Civ5).png",
+            "tier": 5
         },
         {
             "name": "German",
@@ -143,7 +160,8 @@
             "expansion": [
                 "Vanilla"
             ],
-            "picture": "German_(Civ5).png"
+            "picture": "German_(Civ5).png",
+            "tier": 3
         },
         {
             "name": "Greek",
@@ -151,7 +169,8 @@
             "expansion": [
                 "Vanilla"
             ],
-            "picture": "Greek_(Civ5).png"
+            "picture": "Greek_(Civ5).png",
+            "tier": 2
         },
         {
             "name": "Hunnic",
@@ -159,7 +178,8 @@
             "expansion": [
                 "Gods and Kings"
             ],
-            "picture": "Hunnic_(Civ5).png"
+            "picture": "Hunnic_(Civ5).png",
+            "tier": 1
         },
         {
             "name": "Incan",
@@ -167,7 +187,8 @@
             "expansion": [
                 "Spain and Inca"
             ],
-            "picture": "Incan_(Civ5).png"
+            "picture": "Incan_(Civ5).png",
+            "tier": 1
         },
         {
             "name": "Indian",
@@ -175,7 +196,8 @@
             "expansion": [
                 "Vanilla"
             ],
-            "picture": "Indian_(Civ5).png"
+            "picture": "Indian_(Civ5).png",
+            "tier": 3
         },
         {
             "name": "Indonesian",
@@ -183,7 +205,8 @@
             "expansion": [
                 "Brave new World"
             ],
-            "picture": "Indonesian_(Civ5).png"
+            "picture": "Indonesian_(Civ5).png",
+            "tier": 3
         },
         {
             "name": "Iroquois",
@@ -191,7 +214,8 @@
             "expansion": [
                 "Vanilla"
             ],
-            "picture": "Iroquois_(Civ5).png"
+            "picture": "Iroquois_(Civ5).png",
+            "tier": 6
         },
         {
             "name": "Japanese",
@@ -199,7 +223,8 @@
             "expansion": [
                 "Vanilla"
             ],
-            "picture": "Japanese_(Civ5).png"
+            "picture": "Japanese_(Civ5).png",
+            "tier": 5
         },
         {
             "name": "Korean",
@@ -207,7 +232,8 @@
             "expansion": [
                 "Korea"
             ],
-            "picture": "Korean_(Civ5).png"
+            "picture": "Korean_(Civ5).png",
+            "tier": 1
         },
         {
             "name": "Mayan",
@@ -215,7 +241,8 @@
             "expansion": [
                 "Gods and Kings"
             ],
-            "picture": "Mayan_(Civ5).png"
+            "picture": "Mayan_(Civ5).png",
+            "tier": 1
         },
         {
             "name": "Mongolian",
@@ -223,7 +250,8 @@
             "expansion": [
                 "Mongolian"
             ],
-            "picture": "Mongolian_(Civ5).png"
+            "picture": "Mongolian_(Civ5).png",
+            "tier": 3
         },
         {
             "name": "Moroccan",
@@ -231,7 +259,8 @@
             "expansion": [
                 "Brave new World"
             ],
-            "picture": "Moroccan_(Civ5).png"
+            "picture": "Moroccan_(Civ5).png",
+            "tier": 4
         },
         {
             "name": "Ottoman",
@@ -239,7 +268,8 @@
             "expansion": [
                 "Vanilla"
             ],
-            "picture": "Ottoman_(Civ5).png"
+            "picture": "Ottoman_(Civ5).png",
+            "tier": 5
         },
         {
             "name": "Persian",
@@ -247,7 +277,8 @@
             "expansion": [
                 "Vanilla"
             ],
-            "picture": "Persian_(Civ5).png"
+            "picture": "Persian_(Civ5).png",
+            "tier": 1
         },
         {
             "name": "Polish",
@@ -255,7 +286,8 @@
             "expansion": [
                 "Brave new World"
             ],
-            "picture": "Polish_(Civ5).png"
+            "picture": "Polish_(Civ5).png",
+            "tier": 1
         },
         {
             "name": "Polynesian",
@@ -263,7 +295,8 @@
             "expansion": [
                 "Polynesia"
             ],
-            "picture": "Polynesian_(Civ5).png"
+            "picture": "Polynesian_(Civ5).png",
+            "tier": 5
         },
         {
             "name": "Portuguese",
@@ -271,7 +304,8 @@
             "expansion": [
                 "Brave new World"
             ],
-            "picture": "Portuguese_(Civ5).png"
+            "picture": "Portuguese_(Civ5).png",
+            "tier": 4
         },
         {
             "name": "Roman",
@@ -279,7 +313,8 @@
             "expansion": [
                 "Vanilla"
             ],
-            "picture": "Roman_(Civ5).png"
+            "picture": "Roman_(Civ5).png",
+            "tier": 3
         },
         {
             "name": "Russian",
@@ -287,7 +322,8 @@
             "expansion": [
                 "Vanilla"
             ],
-            "picture": "Russian_(Civ5).png"
+            "picture": "Russian_(Civ5).png",
+            "tier": 2
         },
         {
             "name": "Shoshone",
@@ -295,7 +331,8 @@
             "expansion": [
                 "Brave new World"
             ],
-            "picture": "Shoshone_(Civ5).png"
+            "picture": "Shoshone_(Civ5).png",
+            "tier": 2
         },
         {
             "name": "Siamese",
@@ -303,7 +340,8 @@
             "expansion": [
                 "Vanilla"
             ],
-            "picture": "Siamese_(Civ5).png"
+            "picture": "Siamese_(Civ5).png",
+            "tier": 3
         },
         {
             "name": "Songhai",
@@ -311,7 +349,8 @@
             "expansion": [
                 "Vanilla"
             ],
-            "picture": "Songhai_(Civ5).png"
+            "picture": "Songhai_(Civ5).png",
+            "tier": 3
         },
         {
             "name": "Spanish",
@@ -320,7 +359,8 @@
                 "Spain and Inca",
                 "Gods and Kings"
             ],
-            "picture": "Spanish_(Civ5).png"
+            "picture": "Spanish_(Civ5).png",
+            "tier": 2
         },
         {
             "name": "Swedish",
@@ -328,7 +368,8 @@
             "expansion": [
                 "Gods and Kings"
             ],
-            "picture": "Swedish_(Civ5).png"
+            "picture": "Swedish_(Civ5).png",
+            "tier": 4
         },
         {
             "name": "Venetian",
@@ -336,7 +377,8 @@
             "expansion": [
                 "Brave new World"
             ],
-            "picture": "Venetian_(Civ5).png"
+            "picture": "Venetian_(Civ5).png",
+            "tier": 6
         },
         {
             "name": "Zulu",
@@ -344,7 +386,8 @@
             "expansion": [
                 "Brave new World"
             ],
-            "picture": "Zulu_(Civ5).png"
+            "picture": "Zulu_(Civ5).png",
+            "tier": 2
         }
     ]
 }
