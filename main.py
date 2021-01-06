@@ -64,6 +64,12 @@ async def image_paths_to_bytes(paths):
 
     return byte
 
+def ban_check(ctx, msg, bans, ban_groups):
+    content = msg.content.capitalize()
+    if msg.channel.id != ctx.channel.id: return False
+    if ctx.author != msg.author: return False
+    if (content in [x["name"] for x in civilizations["civs"]] or content == "Finished" or content in ban_groups) and content not in bans: return True
+
 # commands
 @bot.command()
 async def help(ctx):
@@ -118,6 +124,7 @@ async def tiers(ctx):
 async def draft(ctx, no_players=None, no_civs_per_player=None):
     total_no_civs = len(civilizations["civs"])
     bans = []
+    ban_groups = ["Standard"]
 
     if not no_players or not no_civs_per_player or not (no_players.isdigit() and no_civs_per_player.isdigit()):
         no_players = 0
@@ -136,18 +143,24 @@ async def draft(ctx, no_players=None, no_civs_per_player=None):
         # banned civs input
         await ctx.send(f"{no_players} players\nBanned civs? (check `>names`)\nType `finished` after banning civs")
 
-        ban_check = lambda m : m.channel.id == ctx.channel.id and ctx.author == m.author and (m.content in [x["name"] for x in civilizations["civs"]] or m.content == "finished") and m.content not in bans
-        ban = (await bot.wait_for("message", check=ban_check)).content
+        check = lambda msg : ban_check(ctx, msg, bans, ban_groups)
+        ban = (await bot.wait_for("message", check=check)).content.capitalize()
 
-        while ban != "finished":
-            bans.append(ban)
+        while ban != "Finished":
+            if (ban == "Standard"):
+                ban_list = ["Babylonian", "Polish", "Hunnic", "English", "Iroquois", "Venetian", "Egyptian", "Incan", "Korean"]
+                for c in ban_list:
+                    if c not in bans:
+                        bans.append(c)
+            else:
+                bans.append(ban)
 
             if len(bans) == 1:
                 await ctx.send("1 civ has been banned")
             else:
                 await ctx.send(f"{len(bans)} civs have been banned")
 
-            ban = (await bot.wait_for("message", check=ban_check)).content
+            ban = (await bot.wait_for("message", check=check)).content.capitalize()
 
         if len(bans) == 1:
             await ctx.send(f"{', '.join(bans)} (1 civ) has been banned")
@@ -178,7 +191,6 @@ async def draft(ctx, no_players=None, no_civs_per_player=None):
         await ctx.send(f"**Player {i+1}**")
         await ctx.send(", ".join(names))
         await ctx.send(file=discord.File(image_bytes, filename="draft.png"))
-
 
 
 bot.run(config["token"])
