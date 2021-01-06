@@ -125,7 +125,7 @@ async def draft(ctx, no_players=None, no_civs_per_player=None):
         no_players = int((await bot.wait_for("message", check=player_check)).content)
 
         # banned civs input
-        await ctx.send(f"{no_players} players.\nBanned civs? (check >names)")
+        await ctx.send(f"{no_players} players\nBanned civs? (check `>names`)\nType `finished` after banning civs")
 
         ban_check = lambda m : m.channel.id == ctx.channel.id and ctx.author == m.author and (m.content in [x["name"] for x in civilizations["civs"]] or m.content == "finished") and m.content not in bans
         ban = (await bot.wait_for("message", check=ban_check)).content
@@ -134,16 +134,16 @@ async def draft(ctx, no_players=None, no_civs_per_player=None):
             bans.append(ban)
 
             if len(bans) == 1:
-                await ctx.send("1 civ has been banned.")
+                await ctx.send("1 civ has been banned")
             else:
-                await ctx.send(f"{len(bans)} civs have been banned.")
+                await ctx.send(f"{len(bans)} civs have been banned")
 
             ban = (await bot.wait_for("message", check=ban_check)).content
 
         if len(bans) == 1:
-            await ctx.send(f"{', '.join(bans)} (1 civ) has been banned.")
+            await ctx.send(f"{', '.join(bans)} (1 civ) has been banned")
         else:
-            await ctx.send(f"{', '.join(bans)} ({len(bans)} civs) have been banned.")
+            await ctx.send(f"{', '.join(bans)} ({len(bans)} civs) have been banned")
 
         max_civs = math.floor((total_no_civs-len(bans))/no_players)
 
@@ -152,7 +152,7 @@ async def draft(ctx, no_players=None, no_civs_per_player=None):
         civ_check = lambda m : m.channel.id == ctx.channel.id and ctx.author == m.author and m.content.isdigit() and 1 <= int(m.content) <= max_civs
         no_civs_per_player = int((await bot.wait_for("message", check=civ_check)).content)
 
-        await ctx.send(f"{no_civs_per_player} civs per player.")
+        await ctx.send(f"{no_civs_per_player} civs per player")
 
     # drafting
     civ_choices = civilizations["civs"].copy()
