@@ -97,15 +97,17 @@ async def draft(ctx, no_players=None, no_civs_per_player=None):
     for i in range(no_players):
         options = random.sample(civ_choices, no_civs_per_player)
         flag_paths = [o["picture"] for o in options]
+        names = [o["name"] for o in options]
         civ_choices = [c for c in civ_choices if c not in options]
 
-        await ctx.send(f"Player {i+1}:")
+        await ctx.send(f"**Player {i+1}:**")
+        await ctx.send(", ".join(names))
 
         # flag image
         flag_images = []
 
         for f in flag_paths:
-            flag_images.append(Image.open(os.path.join(os.path.dirname(__file__), "flags/" + f)))
+            flag_images.append(Image.open(os.path.join(os.path.dirname(__file__), "images/flags/" + f)))
 
         combined_image = Image.new("RGBA", (len(flag_paths) * flag_images[0].width, flag_images[0].height))
         
