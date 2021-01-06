@@ -28,6 +28,15 @@ async def on_ready():
     print("Bot is ready.")
     await bot.change_presence(activity=discord.Game(name=config["activity"]))
 
+    # random profile picture
+    path = "images/flags/" + random.choice(civilizations["civs"])["picture"]
+    img = Image.open(path)
+    img = img.crop((28, 28, 172, 172))
+    byte = io.BytesIO()
+    img.save(byte, format="PNG")
+    await bot.user.edit(avatar=byte.getvalue())
+
+
 
 # bot
 bot = commands.Bot(command_prefix=config["prefix"], help_command=None)
