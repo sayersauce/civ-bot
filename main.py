@@ -74,6 +74,8 @@ def ban_check(ctx, msg, bans, ban_groups):
 @bot.command()
 async def help(ctx):
     text = ("`>names` lists the names of civilisations\n"
+            "`>standard` lists the names of civilisations in the standard ban\n"
+            "`>bans` shows banning instructions\n"
             "`>tier [1-6]` lists the civilisations in a certain Filthy Robot tier\n"
             "`>[tiers|tierlist]` shows the entire Filthy Robot tier list\n"
             "`>draft` starts a civilisation draft\n"
@@ -86,6 +88,16 @@ async def help(ctx):
 @bot.command()
 async def names(ctx):
     await ctx.send("\n".join([civ["name"] for civ in civilizations["civs"]]))
+  
+
+@bot.command()
+async def standard(ctx):
+    await ctx.send("\n".join(config["standard_ban"]))
+
+
+@bot.command()
+async def bans(ctx):
+    await ctx.send("Ban civilisations individually `>names`, ban tiers `>tiers` or use the standard ban `>standard`")
 
 
 @bot.command()
@@ -124,7 +136,7 @@ async def tiers(ctx):
 async def draft(ctx, no_players=None, no_civs_per_player=None):
     total_no_civs = len(civilizations["civs"])
     bans = []
-    ban_groups = ["Standard"]
+    ban_groups = ["Standard", "Tier1", "Tier2", "Tier3", "Tier4", "Tier5", "Tier6"]
 
     if not no_players or not no_civs_per_player or not (no_players.isdigit() and no_civs_per_player.isdigit()):
         no_players = 0
@@ -141,17 +153,25 @@ async def draft(ctx, no_players=None, no_civs_per_player=None):
         no_players = int((await bot.wait_for("message", check=player_check)).content)
 
         # banned civs input
-        await ctx.send(f"{no_players} players\nBanned civs? (check `>names`)\nType `finished` after banning civs")
+        await ctx.send(f"{no_players} players\nBanned civs? (check `>bans`)\nType `finished` after banning civs")
 
         check = lambda msg : ban_check(ctx, msg, bans, ban_groups)
         ban = (await bot.wait_for("message", check=check)).content.capitalize()
 
         while ban != "Finished":
-            if (ban == "Standard"):
-                ban_list = ["Babylonian", "Polish", "Hunnic", "English", "Iroquois", "Venetian", "Egyptian", "Incan", "Korean"]
+            if ban == "Standard":
+                ban_list = config["standard_ban"]
                 for c in ban_list:
                     if c not in bans:
                         bans.append(c)
+            elif "Tier" in ban:
+                # check it is in the format TierX (5 characters long with Tier at the start)
+                if len(ban) == 5:
+                    tier_number = ban[4]
+                    for c in civilizations["civs"]:
+                        name = c["name"]
+                        if name not in bans and str(c["tier"]) == tier_number:
+                            bans.append(name)
             else:
                 bans.append(ban)
 
@@ -162,12 +182,16 @@ async def draft(ctx, no_players=None, no_civs_per_player=None):
 
             ban = (await bot.wait_for("message", check=check)).content.capitalize()
 
+        max_civs = math.floor((total_no_civs-len(bans))/no_players)
+
+        if max_civs == 0:
+            await ctx.send("No draft, all civs have been banned")
+            return
+
         if len(bans) == 1:
             await ctx.send(f"{', '.join(bans)} (1 civ) has been banned")
         else:
             await ctx.send(f"{', '.join(bans)} ({len(bans)} civs) have been banned")
-
-        max_civs = math.floor((total_no_civs-len(bans))/no_players)
 
         await ctx.send(f"How many civs per player? (1-{max_civs})")
         
