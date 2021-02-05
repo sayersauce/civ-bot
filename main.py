@@ -3,6 +3,7 @@ import os
 import math
 import random
 import io
+import asyncio
 
 import discord
 from discord.ext import commands
@@ -200,21 +201,38 @@ async def draft(ctx, no_players=None, no_civs_per_player=None):
 
         await ctx.send(f"{no_civs_per_player} civs per player")
 
-    # drafting
-    civ_choices = civilizations["civs"].copy()
-    civ_choices = [c for c in civ_choices if c["name"] not in bans]
+    # rolling civs to draft
+    async def roll():
+        civ_choices = civilizations["civs"].copy()
+        civ_choices = [c for c in civ_choices if c["name"] not in bans]
 
-    for i in range(no_players):
-        options = random.sample(civ_choices, no_civs_per_player)
-        flag_paths = ["images/flags/" + o["picture"] for o in options]
-        names = [o["name"] for o in options]
-        civ_choices = [c for c in civ_choices if c not in options]
+        for i in range(no_players):
+            options = random.sample(civ_choices, no_civs_per_player)
+            flag_paths = ["images/flags/" + o["picture"] for o in options]
+            names = [o["name"] for o in options]
+            civ_choices = [c for c in civ_choices if c not in options]
 
-        image_bytes = await image_paths_to_bytes(flag_paths)
+            image_bytes = await image_paths_to_bytes(flag_paths)
 
-        await ctx.send(f"**Player {i+1}**")
-        await ctx.send(", ".join(names))
-        await ctx.send(file=discord.File(image_bytes, filename="draft.png"))
+            await ctx.send(f"**Player {i+1}**")
+            await ctx.send(", ".join(names))
+            await ctx.send(file=discord.File(image_bytes, filename="draft.png"))
+            
+        # re-rolling
+        reroll_message = await ctx.send("Redraft?")
+        await reroll_message.add_reaction("🔁")
+
+        def reroll_check(reaction, user):
+            return user == ctx.author and str(reaction.emoji) == "🔁" and reaction.message == reroll_message
+
+        try:
+            await bot.wait_for("reaction_add", timeout=120.0, check=reroll_check)
+        except asyncio.TimeoutError:
+            await reroll_message.delete()
+        else:
+            await roll()
+
+    await roll()
 
 
 bot.run(config["token"])
