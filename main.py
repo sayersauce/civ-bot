@@ -65,11 +65,13 @@ async def image_paths_to_bytes(paths):
 
     return byte
 
+
 def ban_check(ctx, msg, bans, ban_groups):
     content = msg.content.capitalize()
     if msg.channel.id != ctx.channel.id: return False
     if ctx.author != msg.author: return False
     if (content in [x["name"] for x in civilizations["civs"]] or content == "Finished" or content in ban_groups) and content not in bans: return True
+
 
 # commands
 @bot.command()
