@@ -61,5 +61,6 @@ ExecStart=sudo python3 /root/civ-bot/main.py
 [Install]
 WantedBy=multi-user.target
 ```
-Start the bot using `sudo systemctl start civ-bot.service`
-Enable the bot on boot with `sudo systemctl enable civ-bot.service`
+Start the bot using `sudo systemctl start civ-bot.service`.
+
+Enable the bot on boot with `sudo systemctl enable civ-bot.service`.
