@@ -36,6 +36,30 @@ Example `config.json`
     "token": "your-token-here",
     "prefix": ">",
     "activity": ">help",
-    "standard_ban": ["Babylonian", "Polish"]
+    "standard_ban": ["Babylonian", "Polish", "Hunnic", "English", "Iroquois", "Venetian", "Egyptian", "Incan", "Korean"]
 }
 ```
+
+## Linux Service
+Create a service using systemd to easily run the bot.
+```sh
+sudo nano /etc/systemd/system/civ-bot.service
+```
+Make the service file:
+```sh
+[Unit]
+Description=Civ Bot Service
+After=network.target
+StartLimitIntervalSec=0
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=root
+ExecStart=sudo python3 /root/civ-bot/main.py
+
+[Install]
+WantedBy=multi-user.target
+```
+Start the bot using `sudo systemctl start civ-bot.service`
+Enable the bot on boot with `sudo systemctl enable civ-bot.service`
